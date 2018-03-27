@@ -5,7 +5,7 @@ import model.LatinSquare;
 /**
  *
  */
-final class LatinSquareValidator {
+public final class LatinSquareValidator {
 
     private int problemSize;
 
