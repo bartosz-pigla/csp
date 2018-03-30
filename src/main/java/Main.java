@@ -3,6 +3,7 @@ import static common.ArrayUtils.fillMatrix;
 import algorithm.HetmanBackward;
 import algorithm.HetmanForward;
 import algorithm.LatinSquareBackward;
+import algorithm.LatinSquareForward;
 import model.Hetman;
 import model.LatinSquare;
 import validator.HetmanValidator;
@@ -15,7 +16,8 @@ final class Main {
     public static void main(String[] args){
         //runHetmanBackward(8);
         //runLatinSquareBackward(15);
-        runHetmanForward(8);
+        //runHetmanForward(8);
+        runLatinSquareForward(4);
     }
 
     private static void runHetmanBackward(int problemSize){
@@ -38,7 +40,6 @@ final class Main {
         LatinSquareBackward latinSquareBackward = new LatinSquareBackward(problemSize, latinSquare, validator);
 
         latinSquareBackward.run();
-        System.out.println("s");
     }
 
     private static void runHetmanForward(int problemSize){
@@ -49,9 +50,17 @@ final class Main {
         HetmanForward hetmanForward = new HetmanForward(problemSize, hetman);
 
         hetmanForward.run();
-
-        System.out.println("ala");
     }
 
+    private static void runLatinSquareForward(int problemSize){
+        int[][] matrix = new int[problemSize][];
+        fillMatrix(matrix);
+        LatinSquare latinSquare = new LatinSquare(matrix);
+
+        LatinSquareForward latinSquareForward = new LatinSquareForward(problemSize, latinSquare);
+
+        latinSquareForward.run();
+        System.out.println("a");
+    }
 
 }
