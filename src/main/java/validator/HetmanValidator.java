@@ -27,7 +27,7 @@ public final class HetmanValidator {
         this.clear();
         for (row = start; row < end; row++) {
             boolean hetmanExists=false;
-            for (column = start; column < end; column++) {
+            for (column = start; column < problemSize; column++) {
                 if (hetman.getMatrix()[row][column]) {
                     hetmanExists=true;
                     if (forbiddenColumns[column] || forbiddenRows[row]) {
