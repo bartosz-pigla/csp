@@ -29,6 +29,23 @@ public class HetmanValidatorTest {
     }
 
     @Test
+    public void hetmanIsNotValidWhenRowsNotFilled(){
+        boolean[][] matrix = new boolean[][]{
+                {false,false,false,false,false,false,false,false},
+                {false,false,false,false,false,false,false,false},
+                {false,false,false,false,false,false,false,false},
+                {false,false,false,false,false,false,false,false},
+                {false,false,false,false,false,false,false,false},
+                {false,false,false,false,false,false,false,false},
+                {false,false,false,false,false,false,false,false},
+                {false,false,false,false,false,false,false,false},
+        };
+        Hetman hetman = new Hetman(matrix);
+        HetmanValidator validator = new HetmanValidator(matrix.length);
+        assertFalse(validator.isValid(hetman));
+    }
+
+    @Test
     public void hetmanIsNotValidWhenInvalidColumnsAndRows(){
         boolean[][] matrix = new boolean[][]{
                 {true,false,false,false,false,false,false,false},

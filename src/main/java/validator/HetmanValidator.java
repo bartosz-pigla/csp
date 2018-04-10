@@ -26,8 +26,10 @@ public final class HetmanValidator {
     public boolean isPartialValid(Hetman hetman, int start, int end) {
         this.clear();
         for (row = start; row < end; row++) {
+            boolean hetmanExists=false;
             for (column = start; column < end; column++) {
                 if (hetman.getMatrix()[row][column]) {
+                    hetmanExists=true;
                     if (forbiddenColumns[column] || forbiddenRows[row]) {
                         return false;
                     } else {
@@ -49,6 +51,9 @@ public final class HetmanValidator {
                         }
                     }
                 }
+            }
+            if(!hetmanExists){
+                return false;
             }
         }
         return true;

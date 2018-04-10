@@ -16,8 +16,8 @@ public final class LatinSquareValidator {
     public boolean isValid(LatinSquare latinSquare) {
         for (int row = 0; row < problemSize; row++) {
             for (int column = 0; column < problemSize; column++) {
-                if (!isValidForColumns(latinSquare.getMatrix(), column, latinSquare.getMatrix()[row][column], problemSize) ||
-                        !isValidForRows(latinSquare.getMatrix(), row, latinSquare.getMatrix()[row][column], problemSize)) {
+                if (!isValidForColumns(latinSquare.getMatrix(), column, latinSquare.getMatrix()[row][column], problemSize-1) ||
+                        !isValidForRows(latinSquare.getMatrix(), row, latinSquare.getMatrix()[row][column], problemSize-1)) {
                     return false;
                 }
             }

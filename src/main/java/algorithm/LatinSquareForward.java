@@ -29,27 +29,23 @@ public final class LatinSquareForward {
         if (row == problemSize) {
             return true;
         }
-        for (int i = 0; i < problemSize; i++) {
-            if(!forbiddenValues[row][column][i]){
-                latinSquare.getMatrix()[row][column] = i;
-                if (forward(row, column, i)) {
+        for (int value = 0; value < problemSize; value++) {
+            if (!forbiddenValues[row][column][value]) {
+                latinSquare.getMatrix()[row][column] = value;
+                if (forward(row, column, value)) {
                     if (column == problemSize - 1) {
-                        if (recursive(row+1, 0)) {
+                        if (recursive(row + 1, 0)) {
                             return true;
                         } else {
-                            latinSquare.getMatrix()[row][column] = 0;
-                            revertForward(row, column,i);
+                            revertForward(row, column, value);
                         }
                     } else {
-                        if (recursive(row, column+1)) {
+                        if (recursive(row, column + 1)) {
                             return true;
                         } else {
-                            latinSquare.getMatrix()[row][column] = 0;
-                            revertForward(row, column,i);
+                            revertForward(row, column, value);
                         }
                     }
-                } else {
-                    latinSquare.getMatrix()[row][column] = 0;
                 }
             }
         }
@@ -57,37 +53,50 @@ public final class LatinSquareForward {
     }
 
     private boolean forward(int row, int column, int number) {
-        for (int i = row; i < problemSize; i++) {
-            if (notContainsAvailableValue(i, column)) {
+        for (int i = row + 1; i < problemSize; i++) {
+            if (notContainsAvailableValue(i, column, number)) {
                 return false;
             }
         }
-        for (int j = column; j < problemSize; j++) {
-            if (notContainsAvailableValue(row, j)) {
+        for (int i = column + 1; i < problemSize; i++) {
+            if (notContainsAvailableValue(row, i, number)) {
                 return false;
             }
         }
-        for (int i = row; i < problemSize; i++) {
+        for (int i = row + 1; i < problemSize; i++) {
             forbiddenValues[i][column][number] = true;
         }
-        for (int j = column; j < problemSize; j++) {
-            forbiddenValues[row][j][number] = true;
+        for (int i = column + 1; i < problemSize; i++) {
+            forbiddenValues[row][i][number] = true;
         }
         return true;
+
     }
 
     private void revertForward(int row, int column, int number) {
-        for (int i = row; i < problemSize; i++) {
-            forbiddenValues[i][column][number] = false;
+        for (int i = column + 1; i < problemSize; i++) {
+            if (!columnContainsValue(row, i, number)) {
+                forbiddenValues[row][i][number] = false;
+            }
         }
-        for (int j = column; j < problemSize; j++) {
-            forbiddenValues[row][j][number] = false;
+
+        for (int i = row + 1; i < problemSize; i++) {
+            forbiddenValues[i][column][number] = false;
         }
     }
 
-    private boolean notContainsAvailableValue(int row, int column) {
+    private boolean columnContainsValue(int row, int column, int number) {
+        for (int i = 0; i < row; i++) {
+            if (latinSquare.getMatrix()[i][column]==number) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean notContainsAvailableValue(int row, int column, int number) {
         for (int i = 0; i < problemSize; i++) {
-            if (!forbiddenValues[row][column][i]) {
+            if (i != number && !forbiddenValues[row][column][i]) {
                 return false;
             }
         }

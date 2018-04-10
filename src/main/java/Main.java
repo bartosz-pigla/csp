@@ -14,10 +14,10 @@ import validator.LatinSquareValidator;
  */
 final class Main {
     public static void main(String[] args){
-        //runHetmanBackward(8);
-        //runLatinSquareBackward(15);
-        //runHetmanForward(8);
-        runLatinSquareForward(4);
+        //runHetmanBackward(800);
+        //runLatinSquareBackward(6);
+        //runHetmanForward(800);
+        runLatinSquareForward(6);
     }
 
     private static void runHetmanBackward(int problemSize){
@@ -40,6 +40,8 @@ final class Main {
         LatinSquareBackward latinSquareBackward = new LatinSquareBackward(problemSize, latinSquare, validator);
 
         latinSquareBackward.run();
+
+        System.out.println(validator.isValid(latinSquare));
     }
 
     private static void runHetmanForward(int problemSize){
@@ -50,6 +52,9 @@ final class Main {
         HetmanForward hetmanForward = new HetmanForward(problemSize, hetman);
 
         hetmanForward.run();
+
+        HetmanValidator validator = new HetmanValidator(problemSize);
+        System.out.println(validator.isValid(hetman));
     }
 
     private static void runLatinSquareForward(int problemSize){
@@ -60,7 +65,9 @@ final class Main {
         LatinSquareForward latinSquareForward = new LatinSquareForward(problemSize, latinSquare);
 
         latinSquareForward.run();
-        System.out.println("a");
+
+        LatinSquareValidator validator = new LatinSquareValidator(problemSize);
+        System.out.println(validator.isValid(latinSquare));
     }
 
 }
