@@ -1,5 +1,7 @@
 import static common.ArrayUtils.fillMatrix;
 
+import java.util.function.Consumer;
+
 import algorithm.HetmanBackward;
 import algorithm.HetmanForward;
 import algorithm.LatinSquareBackward;
@@ -16,8 +18,15 @@ final class Main {
     public static void main(String[] args){
         //runHetmanBackward(80);
         //runLatinSquareBackward(10);
-        runHetmanForward(80);
-        //runLatinSquareForward(10);
+        //runHetmanForward(10000);
+        //runLatinSquareForward(15);
+        runAlgorithm(Main::runLatinSquareForward, 15, 3);
+    }
+
+    private static void runAlgorithm(Consumer<Integer> consumer, int problemSize, int runQuantity){
+        for(int i=0;i<runQuantity;i++){
+            consumer.accept(problemSize);
+        }
     }
 
     private static void runHetmanBackward(int problemSize){

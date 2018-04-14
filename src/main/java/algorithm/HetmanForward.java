@@ -49,7 +49,10 @@ public final class HetmanForward {
 
     private int tryToInsertHetmanToRow(int row, int start, int end) {
         for (int column = start; column < end; column++) {
-            if (!(rowsFilled[row] || columnsFilled[column] || (row == column && leftDiagonalFilled) || (problemSize - row - 1 == column) && rightDiagonalFilled)) {
+            if (!(rowsFilled[row] ||
+                    columnsFilled[column] ||
+                    (row == column && leftDiagonalFilled) || (problemSize - row - 1 == column)
+                    && rightDiagonalFilled)) {
                 hetman.getMatrix()[row][column]=true;
                 forward(row, column, true);
                 return column;
